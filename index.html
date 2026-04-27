@@ -277,6 +277,277 @@
             color: #9A3412;
         }
 
+        .type-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-left: 0.5rem;
+        }
+
+        .type-badge.collection {
+            background: #F3E8FF;
+            color: #7C3AED;
+        }
+
+        .type-badge.entry {
+            background: #ECFDF5;
+            color: #059669;
+        }
+
+        .type-badge.singleton {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .template-slug {
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: var(--purple);
+            background: #F8FAFC;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        /* User Paths View */
+        #paths-view {
+            padding: 130px 2rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .paths-container h2 {
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .paths-intro {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .funnel-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .funnel-stage h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .entry-points .funnel-items {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .funnel-item {
+            background: white;
+            border: 1px solid #E2E8F0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .funnel-arrows {
+            display: flex;
+            justify-content: center;
+            gap: 8rem;
+            color: #CBD5E1;
+            font-size: 1.5rem;
+        }
+
+        .funnel-arrows span::after {
+            content: "↓";
+        }
+
+        .bucket-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .bucket-card {
+            background: white;
+            border-radius: 8px;
+            border: 2px solid #E2E8F0;
+            padding: 1.25rem;
+        }
+
+        .bucket-card.intent { border-color: #1E40AF; }
+        .bucket-card.interest { border-color: #92400E; }
+        .bucket-card.aftermarket { border-color: #065F46; }
+
+        .bucket-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bucket-icon { font-size: 1.25rem; }
+
+        .bucket-header h4 {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .bucket-card.intent .bucket-header h4 { color: #1E40AF; }
+        .bucket-card.interest .bucket-header h4 { color: #92400E; }
+        .bucket-card.aftermarket .bucket-header h4 { color: #065F46; }
+
+        .bucket-desc {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .bucket-signals, .bucket-pages {
+            font-size: 0.8rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .bucket-signals strong, .bucket-pages strong {
+            display: block;
+            margin-bottom: 0.25rem;
+            color: var(--text);
+        }
+
+        .bucket-signals ul, .bucket-pages ul {
+            margin: 0;
+            padding-left: 1rem;
+            color: var(--text-muted);
+        }
+
+        .conversion-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .conversion-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem 1.25rem;
+            text-align: center;
+            border: 1px solid #E2E8F0;
+        }
+
+        .conversion-card strong {
+            display: block;
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .conversion-card.intent-conv { background: #EFF6FF; }
+        .conversion-card.interest-conv { background: #FEF3C7; }
+        .conversion-card.aftermarket-conv { background: #ECFDF5; }
+
+        .response-time {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .metrics-section {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .metrics-section h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: var(--purple);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--purple);
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .gaps-section h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+
+        .gaps-intro {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .gaps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .gap-card {
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+
+        .gap-card strong {
+            display: block;
+            margin: 0.5rem 0 0.25rem;
+        }
+
+        .gap-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .gap-status {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .gap-status.proposed { background: #FFEDD5; color: #9A3412; }
+        .gap-status.question { background: #FEF3C7; color: #92400E; }
+        .gap-status.future { background: #E0E7FF; color: #3730A3; }
+        .gap-status.current { background: #DCFCE7; color: #166534; }
+
         .node circle {
             cursor: pointer;
             stroke-width: 2px;
@@ -368,6 +639,7 @@
         <div class="tabs">
             <button class="tab active" data-view="tree-view">Sitemap Tree</button>
             <button class="tab" data-view="templates-view">Page Types</button>
+            <button class="tab" data-view="paths-view">User Paths</button>
             <button class="tab" data-view="urls-view">Current URLs</button>
         </div>
     </div>
@@ -385,7 +657,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -412,7 +689,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/products/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -438,7 +720,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/products/[category]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -464,7 +751,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/products/[category]/[product]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -487,12 +779,47 @@
 
             <div class="template-card">
                 <div class="template-header">
+                    <h3>Industries Overview</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/industries/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Overview page linking to all 8 industry verticals</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Industry cards grid</li>
+                            <li>Brief descriptions</li>
+                            <li>Visual icons</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
                     <h3>Industry Landing</h3>
                     <div class="count">8 pages</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/industries/[industry]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -514,17 +841,52 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Solutions Hub</h3>
-                    <div class="count">5 pages</div>
+                    <h3>Solutions Overview</h3>
+                    <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/solutions/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>Complete lines, line integration, project management, special environments, Luna Link IIoT</p>
+                        <p>Hub page for solution offerings: Complete lines, line integration, project management</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Solution cards</li>
+                            <li>Process overview</li>
+                            <li>CTA to contact</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Solution Detail</h3>
+                    <div class="count">4 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/solutions/[solution]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Complete Lines, Line Integration, Project Management, Special Environments</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
@@ -540,17 +902,83 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Aftermarket Services</h3>
-                    <div class="count">7 pages</div>
+                    <h3>Luna Link (IIoT)</h3>
+                    <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/luna-link/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>Service pages for existing customers: Parts, Field Service, Remote Service, Preventative Maintenance, Training, SLAs</p>
+                        <p>IIoT platform landing page - industrial connectivity solution</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Platform overview</li>
+                            <li>Feature highlights</li>
+                            <li>Integration info</li>
+                            <li>Demo CTA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Aftermarket Hub</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/aftermarket/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Entry point for existing customers seeking service, parts, training</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Service category cards</li>
+                            <li>Quick contact</li>
+                            <li>Emergency support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Aftermarket Service</h3>
+                    <div class="count">6 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/aftermarket/[service]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Parts, Field Service, Remote Service, Preventative Maintenance, Training, SLAs</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
@@ -566,12 +994,17 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Resource: Video Library</h3>
-                    <div class="count">1 page + archive</div>
+                    <h3>Video Library</h3>
+                    <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/resources/videos/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -592,12 +1025,17 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Resource: Brochures</h3>
+                    <h3>Brochures Library</h3>
                     <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/resources/brochures/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
@@ -618,12 +1056,17 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Resource: Playbooks/Guides</h3>
+                    <h3>Playbook / Guide</h3>
                     <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/resources/guides/[guide]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
@@ -644,12 +1087,19 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Case Study</h3>
-                    <div class="count">Template + archive</div>
+                    <h3>Case Studies</h3>
+                    <div class="count">Collection + entries</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/resources/case-studies/</span><br>
+                        <span class="template-slug">/resources/case-studies/[slug]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -672,11 +1122,18 @@
             <div class="template-card">
                 <div class="template-header">
                     <h3>News & Events</h3>
-                    <div class="count">Archive + detail</div>
+                    <div class="count">Collection + entries</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/news/</span><br>
+                        <span class="template-slug">/news/[slug]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -702,7 +1159,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/book-a-call/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
@@ -728,7 +1190,12 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/request-quote/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
@@ -749,12 +1216,78 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Campaign Landing Page</h3>
+                    <h3>Contact</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/contact/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>General contact page with form, phone, and location info</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Contact form</li>
+                            <li>Phone/email</li>
+                            <li>Address/map</li>
+                            <li>Hours</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Find a Rep</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/find-a-rep/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Sales rep locator by region/territory</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Region selector</li>
+                            <li>Rep contact cards</li>
+                            <li>Map view</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Campaign Landing</h3>
                     <div class="count">Template</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/go/[campaign]/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
@@ -775,25 +1308,91 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Company Pages</h3>
-                    <div class="count">4 pages</div>
+                    <h3>About / Company</h3>
+                    <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/company/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>About, Careers, Privacy, Partner/Agent pages</p>
+                        <p>Company overview, history, values, team</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
                         <ul>
-                            <li>Content sections</li>
-                            <li>Team/culture</li>
-                            <li>Job listings (Careers)</li>
-                            <li>Partner form</li>
+                            <li>Company story</li>
+                            <li>Mission/values</li>
+                            <li>Team photos</li>
+                            <li>Certifications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Careers</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/careers/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Career opportunities and company culture</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Job listings</li>
+                            <li>Culture section</li>
+                            <li>Benefits</li>
+                            <li>Application CTA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Partners / Agents</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/partners/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Become a BellatRx agent/partner application</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Partner benefits</li>
+                            <li>Requirements</li>
+                            <li>Application form</li>
                         </ul>
                     </div>
                 </div>
@@ -806,7 +1405,14 @@
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug</label>
+                        <span class="template-slug">/search/</span><br>
+                        <span class="template-slug">/404/</span><br>
+                        <span class="template-slug">/thank-you/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
@@ -826,17 +1432,53 @@
 
             <div class="template-card">
                 <div class="template-header">
+                    <h3>Privacy Policy</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/privacy/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Legal privacy policy and data handling</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Policy text</li>
+                            <li>Last updated date</li>
+                            <li>Contact info</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
                     <h3>i18n Structure</h3>
                     <div class="count">3 locales</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Status</label>
+                        <label>Slug Prefixes</label>
+                        <span class="template-slug">/</span> English<br>
+                        <span class="template-slug">/fr/</span> French<br>
+                        <span class="template-slug">/es/</span> Spanish
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>Multi-language support: English (/), French (/fr/), Spanish (/es/)</p>
+                        <p>Multi-language support with locale prefixes</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
@@ -846,6 +1488,203 @@
                             <li>Locale routing</li>
                             <li>Quebec compliance (FR)</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="paths-view" class="view">
+        <div class="paths-container">
+            <h2>Three Visitor Paths</h2>
+            <p class="paths-intro">Every visitor lands in one of three buckets. The site's job is to figure out which one and move them forward without friction.</p>
+
+            <div class="funnel-container">
+                <div class="funnel-stage entry-points">
+                    <h3>Entry Points</h3>
+                    <div class="funnel-items">
+                        <div class="funnel-item">Organic Search (SEO)</div>
+                        <div class="funnel-item">Paid Ads / Campaigns</div>
+                        <div class="funnel-item">Direct / Referral</div>
+                        <div class="funnel-item">Trade Shows</div>
+                    </div>
+                </div>
+
+                <div class="funnel-arrows">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <div class="funnel-stage buckets">
+                    <h3>Visitor Buckets</h3>
+                    <div class="bucket-cards">
+                        <div class="bucket-card intent">
+                            <div class="bucket-header">
+                                <span class="bucket-icon">🎯</span>
+                                <h4>Intent</h4>
+                            </div>
+                            <p class="bucket-desc">Ready to talk. Active buying process.</p>
+                            <div class="bucket-signals">
+                                <strong>Signals:</strong>
+                                <ul>
+                                    <li>Visits product pages multiple times</li>
+                                    <li>Downloads specs/brochures</li>
+                                    <li>Searches for pricing/quote</li>
+                                    <li>Comes from high-intent keywords</li>
+                                </ul>
+                            </div>
+                            <div class="bucket-pages">
+                                <strong>Key Pages:</strong>
+                                <ul>
+                                    <li>Product Detail</li>
+                                    <li>Request Quote</li>
+                                    <li>Book a Call</li>
+                                    <li>Find a Rep</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bucket-card interest">
+                            <div class="bucket-header">
+                                <span class="bucket-icon">📚</span>
+                                <h4>Interest</h4>
+                            </div>
+                            <p class="bucket-desc">Researching. Early-stage evaluation.</p>
+                            <div class="bucket-signals">
+                                <strong>Signals:</strong>
+                                <ul>
+                                    <li>Reading category/industry pages</li>
+                                    <li>Watching videos</li>
+                                    <li>Comparing solutions</li>
+                                    <li>First-time visitor exploring</li>
+                                </ul>
+                            </div>
+                            <div class="bucket-pages">
+                                <strong>Key Pages:</strong>
+                                <ul>
+                                    <li>Industry Landings</li>
+                                    <li>Solutions Hub</li>
+                                    <li>Video Library</li>
+                                    <li>Playbooks/Guides (gated)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bucket-card aftermarket">
+                            <div class="bucket-header">
+                                <span class="bucket-icon">🔧</span>
+                                <h4>Aftermarket</h4>
+                            </div>
+                            <p class="bucket-desc">Existing customer. Service needs.</p>
+                            <div class="bucket-signals">
+                                <strong>Signals:</strong>
+                                <ul>
+                                    <li>Returns to site repeatedly</li>
+                                    <li>Searches for parts/support</li>
+                                    <li>Known customer in Salesforce</li>
+                                    <li>Bookmarked aftermarket pages</li>
+                                </ul>
+                            </div>
+                            <div class="bucket-pages">
+                                <strong>Key Pages:</strong>
+                                <ul>
+                                    <li>Aftermarket Hub</li>
+                                    <li>Parts Request</li>
+                                    <li>Service Request</li>
+                                    <li>Training (PMMI)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="funnel-arrows">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <div class="funnel-stage conversions">
+                    <h3>Primary Conversions</h3>
+                    <div class="conversion-cards">
+                        <div class="conversion-card intent-conv">
+                            <strong>Book a Call</strong>
+                            <span class="response-time">&lt;15 min response</span>
+                        </div>
+                        <div class="conversion-card interest-conv">
+                            <strong>Download Playbook</strong>
+                            <span class="response-time">Email nurture</span>
+                        </div>
+                        <div class="conversion-card aftermarket-conv">
+                            <strong>Parts / Service Request</strong>
+                            <span class="response-time">Support ticket</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="metrics-section">
+                <h3>Success Metrics (from RFP)</h3>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <span class="metric-value">30</span>
+                        <span class="metric-label">MQLs / week</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">8</span>
+                        <span class="metric-label">Calls booked / week</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">200</span>
+                        <span class="metric-label">Quotes / year</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">&lt;15m</span>
+                        <span class="metric-label">Lead response time</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gaps-section">
+                <h3>RFP Gaps / Discussion Items</h3>
+                <p class="gaps-intro">Items from the RFP that need clarification or aren't yet reflected in the sitemap:</p>
+                <div class="gaps-grid">
+                    <div class="gap-card">
+                        <span class="gap-status proposed">Proposed</span>
+                        <strong>Image Gallery / Library</strong>
+                        <p>RFP mentions "Image Gallery/Library" - separate from Video Library? Or integrated media library?</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status proposed">Proposed</span>
+                        <strong>Customer Logos Page</strong>
+                        <p>RFP lists "Customer Logos Page" - standalone social proof page or integrated into Testimonials?</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status question">Question</span>
+                        <strong>Front of Line Campaign Hub</strong>
+                        <p>Central campaign page for "Your Front of Line Starts Here" or distributed across all product pages?</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status future">Future</span>
+                        <strong>Live Chat</strong>
+                        <p>RFP mentions "Future support for Live Chat options" - placeholder needed in IA?</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status future">Future</span>
+                        <strong>Blog</strong>
+                        <p>Marked as future state in RFP - not at launch but CMS should support scaling into it.</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status question">Question</span>
+                        <strong>Testimonials vs Case Studies</strong>
+                        <p>RFP lists both "Testimonials" and "Case Studies" - same template or separate page types?</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status current">Covered</span>
+                        <strong>PMMI Certified Trainer Seal</strong>
+                        <p>RFP mentions including PMMI seal on Aftermarket/Training pages - design consideration.</p>
+                    </div>
+                    <div class="gap-card">
+                        <span class="gap-status current">Covered</span>
+                        <strong>AEO Deep Content</strong>
+                        <p>RFP emphasizes AEO content on products/categories - structured data, Q&A formats, schema markup.</p>
                     </div>
                 </div>
             </div>
