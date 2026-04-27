@@ -399,8 +399,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .bucket-icon { font-size: 1.25rem; }
-
         .bucket-header h4 {
             font-size: 1.1rem;
             margin: 0;
@@ -547,6 +545,143 @@
         .gap-status.question { background: #FEF3C7; color: #92400E; }
         .gap-status.future { background: #E0E7FF; color: #3730A3; }
         .gap-status.current { background: #DCFCE7; color: #166534; }
+
+        /* User Flows Section */
+        .user-flows-section {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .user-flows-section h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+
+        .flows-intro {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-diagram {
+            margin-bottom: 1.5rem;
+        }
+
+        .flow-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            padding: 0.5rem 0;
+        }
+
+        .flow-row.alt-path {
+            opacity: 0.7;
+            margin-bottom: 1.25rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px dashed #E2E8F0;
+        }
+
+        .flow-label {
+            width: 120px;
+            flex-shrink: 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .flow-label.intent-label { color: #1E40AF; }
+        .flow-label.interest-label { color: #92400E; }
+        .flow-label.aftermarket-label { color: #065F46; }
+
+        .flow-steps {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .flow-step {
+            background: #F8FAFC;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            text-align: center;
+            min-width: 100px;
+        }
+
+        .flow-step small {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-family: monospace;
+            margin-top: 0.15rem;
+        }
+
+        .flow-step.entry {
+            background: white;
+            border-style: dashed;
+        }
+
+        .flow-step.conversion {
+            font-weight: 600;
+        }
+
+        .flow-step.conversion.intent-conv {
+            background: #EFF6FF;
+            border-color: #1E40AF;
+            color: #1E40AF;
+        }
+
+        .flow-step.conversion.interest-conv {
+            background: #FEF3C7;
+            border-color: #92400E;
+            color: #92400E;
+        }
+
+        .flow-step.conversion.aftermarket-conv {
+            background: #ECFDF5;
+            border-color: #065F46;
+            color: #065F46;
+        }
+
+        .flow-arrow {
+            color: #CBD5E1;
+            font-size: 1.25rem;
+            padding: 0 0.25rem;
+        }
+
+        .flow-insights {
+            background: #F8FAFC;
+            border-radius: 6px;
+            padding: 1rem;
+        }
+
+        .flow-insights h4 {
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            color: var(--purple);
+        }
+
+        .flow-insights ul {
+            margin: 0;
+            padding-left: 1.25rem;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .flow-insights li {
+            margin-bottom: 0.35rem;
+        }
+
+        .flow-insights strong {
+            color: var(--text);
+        }
 
         .node circle {
             cursor: pointer;
@@ -1160,7 +1295,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/book-a-call/</span>
+                        <span class="template-slug">/contact/book-a-call/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1191,7 +1326,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/request-quote/</span>
+                        <span class="template-slug">/contact/request-quote/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1216,7 +1351,7 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Contact</h3>
+                    <h3>Contact Hub</h3>
                     <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
@@ -1226,20 +1361,20 @@
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
-                        <span class="type-badge singleton">Singleton</span>
+                        <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>General contact page with form, phone, and location info</p>
+                        <p>Contact hub with form, phone, location, and links to specific contact types</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
                         <ul>
-                            <li>Contact form</li>
+                            <li>General contact form</li>
                             <li>Phone/email</li>
                             <li>Address/map</li>
-                            <li>Hours</li>
+                            <li>Links to Book a Call, Find a Rep, Request Quote</li>
                         </ul>
                     </div>
                 </div>
@@ -1253,7 +1388,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/find-a-rep/</span>
+                        <span class="template-slug">/contact/find-a-rep/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1308,7 +1443,7 @@
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>About / Company</h3>
+                    <h3>Company Hub</h3>
                     <div class="count">1 page</div>
                 </div>
                 <div class="template-body">
@@ -1318,12 +1453,42 @@
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Company hub linking to About, Careers, Partners</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Company overview</li>
+                            <li>Links to subpages</li>
+                            <li>Quick stats/highlights</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>About</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/company/about/</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
                         <label>Purpose</label>
-                        <p>Company overview, history, values, team</p>
+                        <p>Company story, history, values, team - the only page about BellatRx</p>
                     </div>
                     <div class="template-field">
                         <label>Key Components</label>
@@ -1345,7 +1510,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/careers/</span>
+                        <span class="template-slug">/company/careers/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1376,7 +1541,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/partners/</span>
+                        <span class="template-slug">/company/partners/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1438,7 +1603,7 @@
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/privacy/</span>
+                        <span class="template-slug">/company/privacy/</span>
                     </div>
                     <div class="template-field">
                         <label>Type &amp; Status</label>
@@ -1519,7 +1684,6 @@
                     <div class="bucket-cards">
                         <div class="bucket-card intent">
                             <div class="bucket-header">
-                                <span class="bucket-icon">🎯</span>
                                 <h4>Intent</h4>
                             </div>
                             <p class="bucket-desc">Ready to talk. Active buying process.</p>
@@ -1545,7 +1709,6 @@
 
                         <div class="bucket-card interest">
                             <div class="bucket-header">
-                                <span class="bucket-icon">📚</span>
                                 <h4>Interest</h4>
                             </div>
                             <p class="bucket-desc">Researching. Early-stage evaluation.</p>
@@ -1571,7 +1734,6 @@
 
                         <div class="bucket-card aftermarket">
                             <div class="bucket-header">
-                                <span class="bucket-icon">🔧</span>
                                 <h4>Aftermarket</h4>
                             </div>
                             <p class="bucket-desc">Existing customer. Service needs.</p>
@@ -1617,6 +1779,98 @@
                             <span class="response-time">Support ticket</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <div class="user-flows-section">
+                <h3>Probable User Flows</h3>
+                <p class="flows-intro">Streamlined paths for each visitor type. Goal: 2-3 clicks to conversion.</p>
+
+                <div class="flow-diagram">
+                    <div class="flow-row">
+                        <div class="flow-label intent-label">Intent Flow</div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry">SEO / Ad<br><small>"liquid filler quote"</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/products/[cat]/[product]/">Product Detail<br><small>/products/.../</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion intent-conv" title="/contact/book-a-call/">Book a Call<br><small>/contact/book-a-call/</small></div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row alt-path">
+                        <div class="flow-label"></div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry" title="/">Homepage<br><small>/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/products/">Product Finder<br><small>/products/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/products/[cat]/[product]/">Product Detail<br><small>/products/.../</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion intent-conv" title="/contact/request-quote/">Request Quote<br><small>/contact/request-quote/</small></div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row">
+                        <div class="flow-label interest-label">Interest Flow</div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry">SEO / Ad<br><small>"pharma filling"</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/industries/pharmaceutical/">Industry Landing<br><small>/industries/pharma/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/resources/guides/[guide]/">Playbook/Guide<br><small>/resources/guides/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion interest-conv">Email Nurture<br><small>Pardot/MCAE</small></div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row alt-path">
+                        <div class="flow-label"></div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry" title="/">Homepage<br><small>/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/solutions/">Solutions Hub<br><small>/solutions/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/resources/videos/">Video Library<br><small>/resources/videos/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion interest-conv" title="/resources/brochures/">Brochure DL<br><small>/resources/brochures/</small></div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row">
+                        <div class="flow-label aftermarket-label">Aftermarket Flow</div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry">Direct / Bookmark<br><small>returning customer</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/aftermarket/">Aftermarket Hub<br><small>/aftermarket/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion aftermarket-conv" title="/aftermarket/parts/">Parts Request<br><small>/aftermarket/parts/</small></div>
+                        </div>
+                    </div>
+
+                    <div class="flow-row alt-path">
+                        <div class="flow-label"></div>
+                        <div class="flow-steps">
+                            <div class="flow-step entry">Search<br><small>"bellatrx support"</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/aftermarket/">Aftermarket Hub<br><small>/aftermarket/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step" title="/aftermarket/training/">Training<br><small>/aftermarket/training/</small></div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-step conversion aftermarket-conv">PMMI Request<br><small>form submission</small></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-insights">
+                    <h4>Streamlining Opportunities</h4>
+                    <ul>
+                        <li><strong>Persistent CTAs:</strong> "Book a Call" sticky in header, context-aware on every page</li>
+                        <li><strong>Smart routing:</strong> Industry detected from entry page → personalized product recommendations</li>
+                        <li><strong>Reduce clicks:</strong> Product Detail pages should have inline quote form, not just link</li>
+                        <li><strong>Aftermarket shortcut:</strong> "I'm an existing customer" link in nav/footer → direct to Aftermarket Hub</li>
+                        <li><strong>Exit intent:</strong> Playbook offer for Interest visitors about to leave</li>
+                    </ul>
                 </div>
             </div>
 
