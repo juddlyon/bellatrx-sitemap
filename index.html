@@ -1,0 +1,1368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BellatRx Sitemap</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        :root {
+            --purple: #7B2CBF;
+            --purple-light: #9D4EDD;
+            --current: #2563EB;
+            --proposed: #EA580C;
+            --remove: #DC2626;
+            --bg: #F8FAFC;
+            --text: #1E293B;
+            --text-muted: #64748B;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            border-bottom: 2px solid var(--purple);
+            z-index: 100;
+        }
+
+        .header-top {
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            color: var(--purple);
+            white-space: nowrap;
+        }
+
+        .legend {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.8rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            padding: 0 1.5rem;
+        }
+
+        .tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-bottom: 3px solid transparent;
+            margin-bottom: -2px;
+        }
+
+        .tab:hover {
+            color: var(--purple);
+        }
+
+        .tab.active {
+            color: var(--purple);
+            border-bottom-color: var(--purple);
+        }
+
+        .controls {
+            margin-left: auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.4rem 0.75rem;
+            border: 1px solid #E2E8F0;
+            background: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn:hover {
+            border-color: var(--purple);
+            color: var(--purple);
+        }
+
+        .info {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .view {
+            display: none;
+            padding-top: 110px;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        #tree-view {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #tree-container {
+            width: 100%;
+            height: calc(100vh - 110px);
+        }
+
+        #templates-view {
+            padding: 130px 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        #urls-view {
+            padding: 130px 2rem 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .urls-container h2 {
+            color: var(--purple);
+            margin-bottom: 0.5rem;
+        }
+
+        .urls-intro {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .url-tree {
+            list-style: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .url-tree ul {
+            list-style: none;
+            margin-left: 1.5rem;
+            border-left: 1px solid #E2E8F0;
+            padding-left: 1rem;
+        }
+
+        .url-tree li {
+            margin: 0.25rem 0;
+        }
+
+        .url-tree strong {
+            color: var(--purple);
+        }
+
+        .url-tree a {
+            color: var(--current);
+            text-decoration: none;
+            font-family: monospace;
+            font-size: 0.85rem;
+        }
+
+        .url-tree a:hover {
+            text-decoration: underline;
+        }
+
+        .template-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+
+        .template-header {
+            padding: 1rem 1.25rem;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+            color: white;
+        }
+
+        .template-header h3 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .template-header .count {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+
+        .template-body {
+            padding: 1rem 1.25rem;
+        }
+
+        .template-field {
+            margin-bottom: 0.75rem;
+        }
+
+        .template-field:last-child {
+            margin-bottom: 0;
+        }
+
+        .template-field label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .template-field p {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .template-field ul {
+            font-size: 0.85rem;
+            margin-left: 1rem;
+            line-height: 1.5;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-badge.current {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .status-badge.proposed {
+            background: #FFEDD5;
+            color: #9A3412;
+        }
+
+        .node circle {
+            cursor: pointer;
+            stroke-width: 2px;
+        }
+
+        .node text {
+            font-size: 12px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .node .label {
+            font-weight: 500;
+        }
+
+        .node .meta {
+            font-size: 10px;
+            fill: var(--text-muted);
+        }
+
+        .node .tag {
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .link {
+            fill: none;
+            stroke: #CBD5E1;
+            stroke-width: 1.5px;
+        }
+
+        .node--current circle { fill: var(--current); stroke: var(--current); }
+        .node--proposed circle { fill: var(--proposed); stroke: var(--proposed); }
+        .node--remove circle { fill: var(--remove); stroke: var(--remove); }
+        .node--section circle { fill: var(--purple); stroke: var(--purple); }
+
+        .node--collapsed circle {
+            fill: white !important;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: white;
+            border: 1px solid #E2E8F0;
+            border-radius: 6px;
+            padding: 0.75rem;
+            font-size: 0.8rem;
+            max-width: 280px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            pointer-events: none;
+            z-index: 200;
+            display: none;
+        }
+
+        .tooltip-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .tooltip-meta {
+            color: var(--text-muted);
+            font-size: 0.75rem;
+        }
+
+        .tooltip-url {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--purple);
+            margin-top: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <div class="header-top">
+            <h1>BellatRx Sitemap</h1>
+            <div class="legend">
+                <span class="legend-item"><span class="legend-dot" style="background: var(--current)"></span> Current</span>
+                <span class="legend-item"><span class="legend-dot" style="background: var(--proposed)"></span> Proposed</span>
+                <span class="legend-item"><span class="legend-dot" style="background: var(--remove)"></span> Remove</span>
+            </div>
+            <div class="controls" id="tree-controls">
+                <button class="btn" onclick="expandAll()">Expand All</button>
+                <button class="btn" onclick="collapseAll()">Collapse All</button>
+                <button class="btn" onclick="resetZoom()">Reset View</button>
+                <button class="btn" onclick="exportData()">Export JSON</button>
+            </div>
+            <span class="info" id="tree-info">Click nodes to expand/collapse · Drag to pan · Scroll to zoom</span>
+        </div>
+        <div class="tabs">
+            <button class="tab active" data-view="tree-view">Sitemap Tree</button>
+            <button class="tab" data-view="templates-view">Page Types</button>
+            <button class="tab" data-view="urls-view">Current URLs</button>
+        </div>
+    </div>
+
+    <div id="tree-view" class="view active">
+        <div id="tree-container"></div>
+    </div>
+
+    <div id="templates-view" class="view">
+        <div class="template-grid">
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Homepage</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Primary entry point with hero video, Front of Line campaign messaging, and industry vertical entry points</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Hero video/animation</li>
+                            <li>Value proposition</li>
+                            <li>Industry cards</li>
+                            <li>Featured products</li>
+                            <li>Trust signals</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Product Finder</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Filterable product catalog with search, category filters, and clear paths to product details</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Search bar</li>
+                            <li>Category filters</li>
+                            <li>Product grid</li>
+                            <li>Quick view cards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Product Category</h3>
+                    <div class="count">~10 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Category landing pages for equipment types: Liquid Filling, Powder Filling, Capping, Labeling, etc.</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Category hero</li>
+                            <li>Product listing</li>
+                            <li>Category overview</li>
+                            <li>Related categories</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Product Detail</h3>
+                    <div class="count">~35 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Individual product pages with specs, media gallery, CTAs, and AEO-optimized content</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Product gallery</li>
+                            <li>Specifications table</li>
+                            <li>Video embed</li>
+                            <li>Download brochure CTA</li>
+                            <li>Related products</li>
+                            <li>Request quote CTA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Industry Landing</h3>
+                    <div class="count">8 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Vertical-specific landing pages: Pharmaceutical, Nutraceutical, Biotech, Food, Beverage, Cosmetics, Personal Care, Chemical</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Industry hero</li>
+                            <li>Pain points/solutions</li>
+                            <li>Relevant products</li>
+                            <li>Case studies</li>
+                            <li>Compliance info</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Solutions Hub</h3>
+                    <div class="count">5 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Complete lines, line integration, project management, special environments, Luna Link IIoT</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Solution overview</li>
+                            <li>Process diagram</li>
+                            <li>Benefits list</li>
+                            <li>Related case studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Aftermarket Services</h3>
+                    <div class="count">7 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Service pages for existing customers: Parts, Field Service, Remote Service, Preventative Maintenance, Training, SLAs</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Service description</li>
+                            <li>Contact/request form</li>
+                            <li>Response time SLAs</li>
+                            <li>Customer portal link</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Resource: Video Library</h3>
+                    <div class="count">1 page + archive</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Centralized video library consolidating ~20 scattered video pages</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Video grid/gallery</li>
+                            <li>Category filters</li>
+                            <li>Search</li>
+                            <li>Featured videos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Resource: Brochures</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Downloadable literature library with PDF brochures, spec sheets, and catalogs</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Document grid</li>
+                            <li>Category filters</li>
+                            <li>Download tracking</li>
+                            <li>Optional gating</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Resource: Playbooks/Guides</h3>
+                    <div class="count">TBD</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Gated lead magnets: buying guides, selection playbooks, ROI calculators</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Landing page</li>
+                            <li>Pardot form</li>
+                            <li>Preview content</li>
+                            <li>Thank you delivery</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Case Study</h3>
+                    <div class="count">Template + archive</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Customer success stories with problem/solution/results format</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Customer logo</li>
+                            <li>Challenge section</li>
+                            <li>Solution details</li>
+                            <li>Results/metrics</li>
+                            <li>Quote/testimonial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>News & Events</h3>
+                    <div class="count">Archive + detail</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Company news, trade show announcements, press releases</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>News listing</li>
+                            <li>Date/category filters</li>
+                            <li>Article detail</li>
+                            <li>Social sharing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Book a Call</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Primary conversion CTA with calendar booking and &lt;15 min response commitment</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Calendar embed</li>
+                            <li>Form fallback</li>
+                            <li>Response time promise</li>
+                            <li>Salesforce integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Request Quote</h3>
+                    <div class="count">1 page</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>RFQ form for product/project inquiries with Pardot/Salesforce routing</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Multi-step form</li>
+                            <li>Product selection</li>
+                            <li>Project details</li>
+                            <li>File upload</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Campaign Landing Page</h3>
+                    <div class="count">Template</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Flexible template for paid ads, PACK EXPO campaigns, product launches</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Customizable hero</li>
+                            <li>Modular sections</li>
+                            <li>Conversion form</li>
+                            <li>Tracking pixels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Company Pages</h3>
+                    <div class="count">4 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>About, Careers, Privacy, Partner/Agent pages</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Content sections</li>
+                            <li>Team/culture</li>
+                            <li>Job listings (Careers)</li>
+                            <li>Partner form</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>Utility Pages</h3>
+                    <div class="count">3 pages</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Search Results, 404 Error, Thank You confirmation pages</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Search results grid</li>
+                            <li>404 helpful links</li>
+                            <li>Thank you next steps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card">
+                <div class="template-header">
+                    <h3>i18n Structure</h3>
+                    <div class="count">3 locales</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Status</label>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <label>Purpose</label>
+                        <p>Multi-language support: English (/), French (/fr/), Spanish (/es/)</p>
+                    </div>
+                    <div class="template-field">
+                        <label>Key Components</label>
+                        <ul>
+                            <li>Language switcher</li>
+                            <li>hreflang tags</li>
+                            <li>Locale routing</li>
+                            <li>Quebec compliance (FR)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="urls-view" class="view">
+        <div class="urls-container">
+            <h2>Current Site URLs</h2>
+            <p class="urls-intro">Reference list of existing bellatrx.com pages. Click to open in new tab.</p>
+            <ul class="url-tree">
+                <li>
+                    <strong>Home</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/" target="_blank">https://bellatrx.com/</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Products</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/products/" target="_blank">https://bellatrx.com/products/</a> - Product Finder</li>
+                        <li>
+                            <strong>Liquid Filling</strong>
+                            <ul>
+                                <li><a href="https://bellatrx.com/products/monoblock-liquid-filling/" target="_blank">/products/monoblock-liquid-filling/</a></li>
+                                <li><a href="https://bellatrx.com/products/inline-liquid-filling/" target="_blank">/products/inline-liquid-filling/</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Powder Filling</strong>
+                            <ul>
+                                <li><a href="https://bellatrx.com/products/powder-filling/" target="_blank">/products/powder-filling/</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Capping</strong>
+                            <ul>
+                                <li><a href="https://bellatrx.com/products/capping/" target="_blank">/products/capping/</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Labeling</strong>
+                            <ul>
+                                <li><a href="https://bellatrx.com/products/labeling/" target="_blank">/products/labeling/</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Industries</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/industries/" target="_blank">https://bellatrx.com/industries/</a></li>
+                        <li><a href="https://bellatrx.com/industries/pharmaceutical/" target="_blank">/industries/pharmaceutical/</a></li>
+                        <li><a href="https://bellatrx.com/industries/nutraceutical/" target="_blank">/industries/nutraceutical/</a></li>
+                        <li><a href="https://bellatrx.com/industries/biotech-diagnostics/" target="_blank">/industries/biotech-diagnostics/</a></li>
+                        <li><a href="https://bellatrx.com/industries/food/" target="_blank">/industries/food/</a></li>
+                        <li><a href="https://bellatrx.com/industries/beverage/" target="_blank">/industries/beverage/</a></li>
+                        <li><a href="https://bellatrx.com/industries/cosmetics/" target="_blank">/industries/cosmetics/</a></li>
+                        <li><a href="https://bellatrx.com/industries/personal-care/" target="_blank">/industries/personal-care/</a></li>
+                        <li><a href="https://bellatrx.com/industries/chemical/" target="_blank">/industries/chemical/</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Solutions</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/solutions/" target="_blank">https://bellatrx.com/solutions/</a></li>
+                        <li><a href="https://bellatrx.com/luna-link/" target="_blank">/luna-link/</a> - IIoT Platform</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Aftermarket</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/aftermarket/" target="_blank">https://bellatrx.com/aftermarket/</a></li>
+                        <li><a href="https://bellatrx.com/aftermarket/parts/" target="_blank">/aftermarket/parts/</a></li>
+                        <li><a href="https://bellatrx.com/aftermarket/service/" target="_blank">/aftermarket/service/</a></li>
+                        <li><a href="https://bellatrx.com/aftermarket/training/" target="_blank">/aftermarket/training/</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Resources</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/resources/videos/" target="_blank">/resources/videos/</a></li>
+                        <li><a href="https://bellatrx.com/news/" target="_blank">/news/</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Company</strong>
+                    <ul>
+                        <li><a href="https://bellatrx.com/company/" target="_blank">https://bellatrx.com/company/</a></li>
+                        <li><a href="https://bellatrx.com/careers/" target="_blank">/careers/</a></li>
+                        <li><a href="https://bellatrx.com/contact/" target="_blank">/contact/</a></li>
+                        <li><a href="https://bellatrx.com/find-a-rep/" target="_blank">/find-a-rep/</a></li>
+                        <li><a href="https://bellatrx.com/partners/" target="_blank">/partners/</a></li>
+                        <li><a href="https://bellatrx.com/privacy/" target="_blank">/privacy/</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+
+    <script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.view).classList.add('active');
+
+            // Show/hide tree controls
+            const isTree = tab.dataset.view === 'tree-view';
+            document.getElementById('tree-controls').style.display = isTree ? 'flex' : 'none';
+            document.getElementById('tree-info').style.display = isTree ? 'block' : 'none';
+        });
+    });
+
+    const data = {
+        name: "BellatRx",
+        type: "root",
+        children: [
+            {
+                name: "Home",
+                type: "section",
+                children: [
+                    { name: "Homepage", type: "current", meta: "Hero video, Front of Line messaging, industry entry points", url: "/", tag: "Intent" }
+                ]
+            },
+            {
+                name: "Products",
+                type: "section",
+                children: [
+                    { name: "Product Finder", type: "current", meta: "Filterable grid, search, clear paths to products", url: "/products/" },
+                    {
+                        name: "Product Categories",
+                        type: "current",
+                        meta: "Template · ~10 categories",
+                        children: [
+                            { name: "Liquid Filling", type: "current" },
+                            { name: "Powder Filling", type: "current" },
+                            { name: "Tablet & Solid Dose", type: "current" },
+                            { name: "Capping", type: "current" },
+                            { name: "Labeling", type: "current" },
+                            { name: "Banding & Sleeving", type: "current" },
+                            { name: "Bottle Handling", type: "current" },
+                            { name: "Conveyors", type: "current" },
+                            { name: "Inspection", type: "current" },
+                            { name: "Debottling", type: "current" }
+                        ]
+                    },
+                    { name: "Product Detail", type: "current", meta: "Template · ~35 products · Specs, media, CTAs, AEO content", url: "/products/[slug]/" }
+                ]
+            },
+            {
+                name: "Industries",
+                type: "section",
+                children: [
+                    { name: "Industries Overview", type: "current", url: "/industries/" },
+                    {
+                        name: "Industry Landing",
+                        type: "current",
+                        meta: "Template · 8 verticals",
+                        children: [
+                            { name: "Pharmaceutical", type: "current" },
+                            { name: "Nutraceutical", type: "current" },
+                            { name: "Biotech & Diagnostics", type: "current" },
+                            { name: "Food", type: "current" },
+                            { name: "Beverage", type: "current" },
+                            { name: "Cosmetics", type: "current" },
+                            { name: "Personal Care", type: "current" },
+                            { name: "Chemical", type: "current" }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "Solutions",
+                type: "section",
+                children: [
+                    { name: "Front of Line", type: "current", meta: "Campaign hub - 'Your Front of Line Starts Here'", url: "/front-of-line/", tag: "Intent" },
+                    {
+                        name: "Solutions Hub",
+                        type: "current",
+                        url: "/solutions/",
+                        children: [
+                            { name: "Complete Lines", type: "current" },
+                            { name: "Line Integration", type: "current" },
+                            { name: "Project Management", type: "current" },
+                            { name: "Special Environments", type: "current" }
+                        ]
+                    },
+                    { name: "Luna Link (IIoT)", type: "current", url: "/luna-link/" }
+                ]
+            },
+            {
+                name: "Aftermarket",
+                type: "section",
+                children: [
+                    {
+                        name: "Aftermarket Hub",
+                        type: "current",
+                        meta: "Entry for existing customers",
+                        url: "/aftermarket/",
+                        tag: "Aftermarket",
+                        children: [
+                            { name: "Parts", type: "current" },
+                            { name: "Field Service", type: "current" },
+                            { name: "Remote Service", type: "current" },
+                            { name: "Preventative Maintenance", type: "current" },
+                            { name: "Training (PMMI)", type: "current" },
+                            { name: "Emergency Support", type: "proposed", meta: "New" },
+                            { name: "SLAs", type: "current" }
+                        ]
+                    }
+                ]
+            },
+            {
+                name: "Resources",
+                type: "section",
+                children: [
+                    { name: "Video Library", type: "current", url: "/resources/videos/" },
+                    { name: "Brochures", type: "proposed", meta: "New - downloadable literature", url: "/resources/brochures/" },
+                    { name: "Playbooks / Guides", type: "proposed", meta: "New - gated lead magnets", tag: "Interest" },
+                    { name: "Case Studies", type: "current", meta: "Template - customer success" },
+                    { name: "Testimonials", type: "proposed", meta: "New - customer logos, quotes" },
+                    { name: "News & Events", type: "current", meta: "Archive + detail template" },
+                    { name: "Blog", type: "proposed", meta: "Future - not at launch" }
+                ]
+            },
+            {
+                name: "Conversion",
+                type: "section",
+                children: [
+                    { name: "Book a Call", type: "proposed", meta: "New - primary CTA, <15 min response", url: "/book-a-call/", tag: "Intent" },
+                    { name: "Request Quote", type: "proposed", meta: "New - RFQ form", url: "/request-quote/", tag: "Intent" },
+                    { name: "Contact", type: "current", url: "/contact/" },
+                    { name: "Find a Rep", type: "current", url: "/find-a-rep/" },
+                    { name: "Campaign Landing Pages", type: "proposed", meta: "New - flexible template for ads/PACK EXPO" }
+                ]
+            },
+            {
+                name: "Company",
+                type: "section",
+                children: [
+                    { name: "About", type: "current", meta: "The only page about BellatRx", url: "/company/" },
+                    { name: "Careers", type: "current", url: "/careers/" },
+                    { name: "Privacy", type: "current", url: "/privacy/" },
+                    { name: "Become Agent", type: "current", url: "/partners/" }
+                ]
+            },
+            {
+                name: "Utility",
+                type: "section",
+                _collapsed: true,
+                children: [
+                    { name: "Search Results", type: "current" },
+                    { name: "404", type: "current" },
+                    { name: "Thank You", type: "current" }
+                ]
+            },
+            {
+                name: "i18n",
+                type: "section",
+                _collapsed: true,
+                children: [
+                    { name: "English (/)", type: "current" },
+                    { name: "French (/fr/)", type: "current", meta: "Québec compliance" },
+                    { name: "Spanish (/es/)", type: "current" }
+                ]
+            },
+            {
+                name: "Cleanup",
+                type: "section",
+                _collapsed: true,
+                children: [
+                    { name: "~20 video pages at root", type: "remove", meta: "Consolidate into video library" },
+                    { name: "Old labeler URLs", type: "remove", meta: "/notaris-*-labeling-machine/ → /products/" },
+                    { name: "Duplicate app pages", type: "remove", meta: "/liquid-filling-machine-*/ → products" },
+                    { name: "Old industry URLs", type: "remove", meta: "/cosmetics-personal-care/ → /industries/" }
+                ]
+            }
+        ]
+    };
+
+    // D3 Tree Setup
+    const container = document.getElementById('tree-container');
+    const width = container.clientWidth;
+    const height = container.clientHeight;
+    const margin = { top: 40, right: 120, bottom: 40, left: 80 };
+
+    const svg = d3.select('#tree-container')
+        .append('svg')
+        .attr('width', width)
+        .attr('height', height);
+
+    const g = svg.append('g')
+        .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+    // Zoom behavior
+    const zoom = d3.zoom()
+        .scaleExtent([0.3, 3])
+        .on('zoom', (event) => {
+            g.attr('transform', event.transform);
+        });
+
+    svg.call(zoom);
+    svg.call(zoom.transform, d3.zoomIdentity.translate(margin.left, height / 2).scale(0.9));
+
+    const tooltip = document.getElementById('tooltip');
+
+    // Tree layout
+    const treeLayout = d3.tree().nodeSize([28, 220]);
+
+    // Process data
+    const root = d3.hierarchy(data);
+
+    // Apply initial collapsed states
+    root.descendants().forEach(d => {
+        if (d.data._collapsed && d.children) {
+            d._children = d.children;
+            d.children = null;
+        }
+    });
+
+    function update(source) {
+        const duration = 300;
+
+        treeLayout(root);
+
+        // Normalize for fixed-depth
+        root.descendants().forEach(d => {
+            d.y = d.depth * 200;
+        });
+
+        // Nodes
+        const nodes = g.selectAll('.node')
+            .data(root.descendants(), d => d.data.name);
+
+        const nodeEnter = nodes.enter()
+            .append('g')
+            .attr('class', d => {
+                let cls = 'node';
+                if (d.data.type === 'section') cls += ' node--section';
+                else if (d.data.type === 'current') cls += ' node--current';
+                else if (d.data.type === 'proposed') cls += ' node--proposed';
+                else if (d.data.type === 'remove') cls += ' node--remove';
+                if (d._children) cls += ' node--collapsed';
+                return cls;
+            })
+            .attr('transform', d => `translate(${source.y0 || 0},${source.x0 || 0})`)
+            .on('click', (event, d) => {
+                if (d.children) {
+                    d._children = d.children;
+                    d.children = null;
+                } else if (d._children) {
+                    d.children = d._children;
+                    d._children = null;
+                }
+                update(d);
+            })
+            .on('mouseover', (event, d) => {
+                if (d.data.meta || d.data.url) {
+                    tooltip.innerHTML = `
+                        <div class="tooltip-title">${d.data.name}</div>
+                        ${d.data.meta ? `<div class="tooltip-meta">${d.data.meta}</div>` : ''}
+                        ${d.data.url ? `<div class="tooltip-url">${d.data.url}</div>` : ''}
+                    `;
+                    tooltip.style.display = 'block';
+                    tooltip.style.left = (event.pageX + 10) + 'px';
+                    tooltip.style.top = (event.pageY - 10) + 'px';
+                }
+            })
+            .on('mousemove', (event) => {
+                tooltip.style.left = (event.pageX + 10) + 'px';
+                tooltip.style.top = (event.pageY - 10) + 'px';
+            })
+            .on('mouseout', () => {
+                tooltip.style.display = 'none';
+            });
+
+        nodeEnter.append('circle')
+            .attr('r', d => d.data.type === 'section' || d.data.type === 'root' ? 8 : 6);
+
+        nodeEnter.append('text')
+            .attr('class', 'label')
+            .attr('dy', '.35em')
+            .attr('x', d => d.children || d._children ? -12 : 12)
+            .attr('text-anchor', d => d.children || d._children ? 'end' : 'start')
+            .text(d => d.data.name);
+
+        // Tag badges
+        nodeEnter.filter(d => d.data.tag)
+            .append('text')
+            .attr('class', 'tag')
+            .attr('dy', '.35em')
+            .attr('x', d => {
+                const labelWidth = d.data.name.length * 7;
+                return (d.children || d._children ? -12 - labelWidth - 8 : 12 + labelWidth + 8);
+            })
+            .attr('text-anchor', d => d.children || d._children ? 'end' : 'start')
+            .attr('fill', d => {
+                if (d.data.tag === 'Intent') return '#1E40AF';
+                if (d.data.tag === 'Interest') return '#92400E';
+                if (d.data.tag === 'Aftermarket') return '#065F46';
+                return '#6B7280';
+            })
+            .text(d => `[${d.data.tag}]`);
+
+        // Update
+        const nodeUpdate = nodes.merge(nodeEnter)
+            .transition()
+            .duration(duration)
+            .attr('transform', d => `translate(${d.y},${d.x})`)
+            .attr('class', d => {
+                let cls = 'node';
+                if (d.data.type === 'section') cls += ' node--section';
+                else if (d.data.type === 'current') cls += ' node--current';
+                else if (d.data.type === 'proposed') cls += ' node--proposed';
+                else if (d.data.type === 'remove') cls += ' node--remove';
+                if (d._children) cls += ' node--collapsed';
+                return cls;
+            });
+
+        // Exit
+        nodes.exit()
+            .transition()
+            .duration(duration)
+            .attr('transform', d => `translate(${source.y},${source.x})`)
+            .remove();
+
+        // Links
+        const links = g.selectAll('.link')
+            .data(root.links(), d => d.target.data.name);
+
+        const linkEnter = links.enter()
+            .insert('path', 'g')
+            .attr('class', 'link')
+            .attr('d', d => {
+                const o = { x: source.x0 || 0, y: source.y0 || 0 };
+                return diagonal({ source: o, target: o });
+            });
+
+        links.merge(linkEnter)
+            .transition()
+            .duration(duration)
+            .attr('d', diagonal);
+
+        links.exit()
+            .transition()
+            .duration(duration)
+            .attr('d', d => {
+                const o = { x: source.x, y: source.y };
+                return diagonal({ source: o, target: o });
+            })
+            .remove();
+
+        // Store positions for transitions
+        root.descendants().forEach(d => {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
+    }
+
+    function diagonal(d) {
+        return `M${d.source.y},${d.source.x}
+                C${(d.source.y + d.target.y) / 2},${d.source.x}
+                 ${(d.source.y + d.target.y) / 2},${d.target.x}
+                 ${d.target.y},${d.target.x}`;
+    }
+
+    // Initial render
+    root.x0 = 0;
+    root.y0 = 0;
+    update(root);
+
+    // Controls
+    function expandAll() {
+        root.descendants().forEach(d => {
+            if (d._children) {
+                d.children = d._children;
+                d._children = null;
+            }
+        });
+        update(root);
+    }
+
+    function collapseAll() {
+        root.descendants().forEach(d => {
+            if (d.depth > 1 && d.children) {
+                d._children = d.children;
+                d.children = null;
+            }
+        });
+        update(root);
+    }
+
+    function resetZoom() {
+        svg.transition()
+            .duration(500)
+            .call(zoom.transform, d3.zoomIdentity.translate(margin.left, height / 2).scale(0.9));
+    }
+
+    function exportData() {
+        const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'bellatrx-sitemap-' + new Date().toISOString().split('T')[0] + '.json';
+        a.click();
+    }
+
+    // Resize handler
+    window.addEventListener('resize', () => {
+        const w = container.clientWidth;
+        const h = container.clientHeight;
+        svg.attr('width', w).attr('height', h);
+    });
+    </script>
+</body>
+</html>
