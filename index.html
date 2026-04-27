@@ -683,6 +683,16 @@
             color: var(--text);
         }
 
+        .deploy-stamp {
+            position: fixed;
+            bottom: 8px;
+            right: 12px;
+            font-size: 0.65rem;
+            color: #94A3B8;
+            font-family: monospace;
+            z-index: 50;
+        }
+
         .node circle {
             cursor: pointer;
             stroke-width: 2px;
@@ -2445,6 +2455,13 @@
         const w = container.clientWidth;
         const h = container.clientHeight;
         svg.attr('width', w).attr('height', h);
+    });
+    </script>
+    <div class="deploy-stamp">Deployed: <span id="deploy-time"></span> · <span id="deploy-hash">e347969</span></div>
+    <script>
+    document.getElementById('deploy-time').textContent = new Date().toLocaleString('en-US', {
+        month: 'short', day: 'numeric', year: 'numeric',
+        hour: 'numeric', minute: '2-digit', hour12: true
     });
     </script>
 </body>
