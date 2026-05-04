@@ -15,7 +15,15 @@ netlify deploy --prod --dir=.
 
 ## Structure
 
-- `index.html` - Single-page app with three tabs:
+- `index.html` - Single-page app with four tabs:
   - Sitemap Tree (D3.js interactive)
-  - Page Types (CMS template cards)
+  - Page Types (CMS template cards with color-coded groups)
+  - User Paths (Intent/Interest/Aftermarket funnels)
   - Current URLs (reference links)
+
+## Source Docs
+
+- `BellatRx-Website-Redesign-RFP-2026-02-Final.pdf` - Client RFP
+- `Strategy & Messaging.md` - Strategy framework (three visitor paths, Big Idea, metrics)
+
+See `CLAUDE.md` for full project context.

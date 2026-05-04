@@ -153,6 +153,184 @@
             height: 100vh;
         }
 
+        #competitors-view {
+            padding: 130px 2rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-y: auto;
+            height: 100vh;
+        }
+
+        .competitors-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .competitors-header h2 {
+            color: var(--purple);
+        }
+
+        .competitors-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .competitors-intro {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .competitor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .competitor-card {
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+
+        .competitor-header {
+            padding: 0.75rem 1rem;
+            background: #1E293B;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .competitor-header h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .competitor-header a {
+            color: #94A3B8;
+            font-size: 0.75rem;
+            text-decoration: none;
+        }
+
+        .competitor-header a:hover {
+            color: white;
+        }
+
+        .competitor-body {
+            padding: 0.75rem 1rem;
+        }
+
+        .nav-section {
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .nav-section:last-child {
+            border-bottom: none;
+        }
+
+        .nav-section details summary {
+            cursor: pointer;
+            padding: 0.5rem 0;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--purple);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-section details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .nav-section details summary::before {
+            content: '+';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--purple);
+            background: #F3E8FF;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        .nav-section details[open] > summary::before {
+            content: '−';
+        }
+
+        .nav-tag {
+            font-size: 0.6rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 3px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .nav-tag.industry { background: #F3E8FF; color: #7C3AED; }
+        .nav-tag.product { background: #DBEAFE; color: #1D4ED8; }
+        .nav-tag.solution { background: #CCFBF1; color: #0D9488; }
+        .nav-tag.role { background: #FEF3C7; color: #B45309; }
+        .nav-tag.support { background: #FEE2E2; color: #B91C1C; }
+
+        .nav-items {
+            list-style: none;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            padding: 0 0 0.5rem 1.5rem;
+            border-left: 1px solid #E2E8F0;
+            margin-left: 0.5rem;
+        }
+
+        .nav-items li {
+            padding: 0.15rem 0;
+            font-family: ui-monospace, monospace;
+        }
+
+        .nav-items ul {
+            list-style: none;
+            margin-left: 0.75rem;
+            padding-left: 0.5rem;
+            border-left: 1px solid #E2E8F0;
+        }
+
+        .nav-items details summary {
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 500;
+            color: var(--text);
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .nav-items details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .nav-items details summary::before {
+            content: '+';
+            font-size: 10px;
+            color: var(--purple);
+        }
+
+        .nav-items details[open] > summary::before {
+            content: '−';
+        }
+
+        .nav-items details ul {
+            margin-top: 0.25rem;
+        }
+
         .urls-container h2 {
             color: var(--purple);
             margin-bottom: 0.5rem;
@@ -311,6 +489,45 @@
             border-radius: 4px;
             display: inline-block;
         }
+
+        /* Page type group colors */
+        .template-card[data-group="products"] { border-left: 4px solid #3B82F6; }
+        .template-card[data-group="industries"] { border-left: 4px solid #8B5CF6; }
+        .template-card[data-group="solutions"] { border-left: 4px solid #06B6D4; }
+        .template-card[data-group="aftermarket"] { border-left: 4px solid #10B981; }
+        .template-card[data-group="resources"] { border-left: 4px solid #F59E0B; }
+        .template-card[data-group="contact"] { border-left: 4px solid #EF4444; }
+        .template-card[data-group="company"] { border-left: 4px solid #6366F1; }
+
+        .group-label {
+            grid-column: 1 / -1;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            padding: 0.5rem 0;
+            margin-top: 1rem;
+            border-bottom: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .group-label:first-child { margin-top: 0; }
+
+        .group-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .group-dot.products { background: #3B82F6; }
+        .group-dot.industries { background: #8B5CF6; }
+        .group-dot.solutions { background: #06B6D4; }
+        .group-dot.aftermarket { background: #10B981; }
+        .group-dot.resources { background: #F59E0B; }
+        .group-dot.contact { background: #EF4444; }
+        .group-dot.company { background: #6366F1; }
 
         /* User Paths View */
         #paths-view {
@@ -545,6 +762,7 @@
         .gap-status.question { background: #FEF3C7; color: #92400E; }
         .gap-status.future { background: #E0E7FF; color: #3730A3; }
         .gap-status.current { background: #DCFCE7; color: #166534; }
+        .gap-status.addressed { background: #D1FAE5; color: #065F46; }
 
         /* User Flows Section */
         .user-flows-section {
@@ -786,6 +1004,7 @@
             <button class="tab" data-view="templates-view">Page Types</button>
             <button class="tab" data-view="paths-view">User Paths</button>
             <button class="tab" data-view="urls-view">Current URLs</button>
+            <button class="tab" data-view="competitors-view">Competitor Nav</button>
         </div>
     </div>
 
@@ -798,7 +1017,7 @@
             <div class="template-card">
                 <div class="template-header">
                     <h3>Homepage</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -806,31 +1025,21 @@
                         <span class="template-slug">/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Primary entry point with hero video, Front of Line campaign messaging, and industry vertical entry points</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Hero video/animation</li>
-                            <li>Value proposition</li>
-                            <li>Industry cards</li>
-                            <li>Featured products</li>
-                            <li>Trust signals</li>
-                        </ul>
+                        <p>Primary entry point and campaign hub</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot products"></span> Products</div>
+
+            <div class="template-card" data-group="products">
                 <div class="template-header">
                     <h3>Product Finder</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -838,30 +1047,19 @@
                         <span class="template-slug">/products/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Filterable product catalog with search, category filters, and clear paths to product details</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Search bar</li>
-                            <li>Category filters</li>
-                            <li>Product grid</li>
-                            <li>Quick view cards</li>
-                        </ul>
+                        <p>Filterable product catalog</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="products">
                 <div class="template-header">
                     <h3>Product Category</h3>
-                    <div class="count">~10 pages</div>
+                    <div class="count">~10</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -869,30 +1067,19 @@
                         <span class="template-slug">/products/[category]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Category landing pages for equipment types: Liquid Filling, Powder Filling, Capping, Labeling, etc.</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Category hero</li>
-                            <li>Product listing</li>
-                            <li>Category overview</li>
-                            <li>Related categories</li>
-                        </ul>
+                        <p>Equipment type landing (filling, capping, labeling...)</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="products">
                 <div class="template-header">
                     <h3>Product Detail</h3>
-                    <div class="count">~35 pages</div>
+                    <div class="count">~35</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -900,32 +1087,21 @@
                         <span class="template-slug">/products/[category]/[product]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Individual product pages with specs, media gallery, CTAs, and AEO-optimized content</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Product gallery</li>
-                            <li>Specifications table</li>
-                            <li>Video embed</li>
-                            <li>Download brochure CTA</li>
-                            <li>Related products</li>
-                            <li>Request quote CTA</li>
-                        </ul>
+                        <p>Individual machine specs and media</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot industries"></span> Industries</div>
+
+            <div class="template-card" data-group="industries">
                 <div class="template-header">
                     <h3>Industries Overview</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -933,29 +1109,19 @@
                         <span class="template-slug">/industries/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Overview page linking to all 8 industry verticals</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Industry cards grid</li>
-                            <li>Brief descriptions</li>
-                            <li>Visual icons</li>
-                        </ul>
+                        <p>Industry vertical index</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="industries">
                 <div class="template-header">
                     <h3>Industry Landing</h3>
-                    <div class="count">8 pages</div>
+                    <div class="count">8</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -963,31 +1129,21 @@
                         <span class="template-slug">/industries/[industry]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Vertical-specific landing pages: Pharmaceutical, Nutraceutical, Biotech, Food, Beverage, Cosmetics, Personal Care, Chemical</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Industry hero</li>
-                            <li>Pain points/solutions</li>
-                            <li>Relevant products</li>
-                            <li>Case studies</li>
-                            <li>Compliance info</li>
-                        </ul>
+                        <p>Vertical-specific products and compliance</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot solutions"></span> Solutions</div>
+
+            <div class="template-card" data-group="solutions">
                 <div class="template-header">
                     <h3>Solutions Overview</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -995,29 +1151,19 @@
                         <span class="template-slug">/solutions/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Hub page for solution offerings: Complete lines, line integration, project management</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Solution cards</li>
-                            <li>Process overview</li>
-                            <li>CTA to contact</li>
-                        </ul>
+                        <p>Solution offerings index</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="solutions">
                 <div class="template-header">
                     <h3>Solution Detail</h3>
-                    <div class="count">4 pages</div>
+                    <div class="count">4</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1025,61 +1171,41 @@
                         <span class="template-slug">/solutions/[solution]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Complete Lines, Line Integration, Project Management, Special Environments</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Solution overview</li>
-                            <li>Process diagram</li>
-                            <li>Benefits list</li>
-                            <li>Related case studies</li>
-                        </ul>
+                        <p>Complete lines, integration, project mgmt</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="solutions">
                 <div class="template-header">
-                    <h3>Luna Link (IIoT)</h3>
-                    <div class="count">1 page</div>
+                    <h3>Luna Link</h3>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/luna-link/</span>
+                        <span class="template-slug">/solutions/luna-link/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>IIoT platform landing page - industrial connectivity solution</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Platform overview</li>
-                            <li>Feature highlights</li>
-                            <li>Integration info</li>
-                            <li>Demo CTA</li>
-                        </ul>
+                        <p>IIoT platform</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot aftermarket"></span> Aftermarket</div>
+
+            <div class="template-card" data-group="aftermarket">
                 <div class="template-header">
                     <h3>Aftermarket Hub</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1087,29 +1213,19 @@
                         <span class="template-slug">/aftermarket/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Entry point for existing customers seeking service, parts, training</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Service category cards</li>
-                            <li>Quick contact</li>
-                            <li>Emergency support</li>
-                        </ul>
+                        <p>Existing customer entry point</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="aftermarket">
                 <div class="template-header">
                     <h3>Aftermarket Service</h3>
-                    <div class="count">6 pages</div>
+                    <div class="count">6</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1117,30 +1233,41 @@
                         <span class="template-slug">/aftermarket/[service]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Parts, Field Service, Remote Service, Preventative Maintenance, Training, SLAs</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Service description</li>
-                            <li>Contact/request form</li>
-                            <li>Response time SLAs</li>
-                            <li>Customer portal link</li>
-                        </ul>
+                        <p>Parts, service, training, SLAs</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot resources"></span> Resources</div>
+
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
-                    <h3>Video Library</h3>
-                    <div class="count">1 page</div>
+                    <h3>Resources Hub</h3>
+                    <div class="count">1</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/resources/</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="type-badge collection">Collection</span>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <p>Content library index</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card" data-group="resources">
+                <div class="template-header">
+                    <h3>Videos</h3>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1148,30 +1275,19 @@
                         <span class="template-slug">/resources/videos/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Centralized video library consolidating ~20 scattered video pages</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Video grid/gallery</li>
-                            <li>Category filters</li>
-                            <li>Search</li>
-                            <li>Featured videos</li>
-                        </ul>
+                        <p>Video library</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
-                    <h3>Brochures Library</h3>
-                    <div class="count">1 page</div>
+                    <h3>Brochures</h3>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1179,61 +1295,39 @@
                         <span class="template-slug">/resources/brochures/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Downloadable literature library with PDF brochures, spec sheets, and catalogs</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Document grid</li>
-                            <li>Category filters</li>
-                            <li>Download tracking</li>
-                            <li>Optional gating</li>
-                        </ul>
+                        <p>Downloadable literature</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
-                    <h3>Playbook / Guide</h3>
+                    <h3>Guides</h3>
                     <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/resources/guides/[guide]/</span>
+                        <span class="template-slug">/resources/guides/[slug]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Gated lead magnets: buying guides, selection playbooks, ROI calculators</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Landing page</li>
-                            <li>Pardot form</li>
-                            <li>Preview content</li>
-                            <li>Thank you delivery</li>
-                        </ul>
+                        <p>Gated lead magnets</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
                     <h3>Case Studies</h3>
-                    <div class="count">Collection + entries</div>
+                    <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1242,127 +1336,66 @@
                         <span class="template-slug">/resources/case-studies/[slug]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Customer success stories with problem/solution/results format</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Customer logo</li>
-                            <li>Challenge section</li>
-                            <li>Solution details</li>
-                            <li>Results/metrics</li>
-                            <li>Quote/testimonial</li>
-                        </ul>
+                        <p>Customer success stories</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
-                    <h3>News & Events</h3>
-                    <div class="count">Collection + entries</div>
+                    <h3>News</h3>
+                    <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/news/</span><br>
-                        <span class="template-slug">/news/[slug]/</span>
+                        <span class="template-slug">/resources/news/</span><br>
+                        <span class="template-slug">/resources/news/[slug]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Company news, trade show announcements, press releases</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>News listing</li>
-                            <li>Date/category filters</li>
-                            <li>Article detail</li>
-                            <li>Social sharing</li>
-                        </ul>
+                        <p>Company news and press</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="resources">
                 <div class="template-header">
-                    <h3>Book a Call</h3>
-                    <div class="count">1 page</div>
+                    <h3>Insights</h3>
+                    <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
                         <label>Slug</label>
-                        <span class="template-slug">/contact/book-a-call/</span>
+                        <span class="template-slug">/resources/insights/</span><br>
+                        <span class="template-slug">/resources/insights/[slug]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
-                        <span class="type-badge singleton">Singleton</span>
+                        <span class="type-badge collection">Collection</span>
+                        <span class="type-badge entry">Entry</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Primary conversion CTA with calendar booking and &lt;15 min response commitment</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Calendar embed</li>
-                            <li>Form fallback</li>
-                            <li>Response time promise</li>
-                            <li>Salesforce integration</li>
-                        </ul>
+                        <p>Thought leadership articles</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
-                <div class="template-header">
-                    <h3>Request Quote</h3>
-                    <div class="count">1 page</div>
-                </div>
-                <div class="template-body">
-                    <div class="template-field">
-                        <label>Slug</label>
-                        <span class="template-slug">/contact/request-quote/</span>
-                    </div>
-                    <div class="template-field">
-                        <label>Type &amp; Status</label>
-                        <span class="type-badge singleton">Singleton</span>
-                        <span class="status-badge proposed">Proposed</span>
-                    </div>
-                    <div class="template-field">
-                        <label>Purpose</label>
-                        <p>RFQ form for product/project inquiries with Pardot/Salesforce routing</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Multi-step form</li>
-                            <li>Product selection</li>
-                            <li>Project details</li>
-                            <li>File upload</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <div class="group-label"><span class="group-dot contact"></span> Contact</div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="contact">
                 <div class="template-header">
                     <h3>Contact Hub</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1370,30 +1403,59 @@
                         <span class="template-slug">/contact/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Contact hub with form, phone, location, and links to specific contact types</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>General contact form</li>
-                            <li>Phone/email</li>
-                            <li>Address/map</li>
-                            <li>Links to Book a Call, Find a Rep, Request Quote</li>
-                        </ul>
+                        <p>Contact options index</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="contact">
+                <div class="template-header">
+                    <h3>Book a Call</h3>
+                    <div class="count">1</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/contact/book-a-call/</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <p>Calendar booking</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card" data-group="contact">
+                <div class="template-header">
+                    <h3>Request Quote</h3>
+                    <div class="count">1</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/contact/request-quote/</span>
+                    </div>
+                    <div class="template-field">
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge proposed">Proposed</span>
+                    </div>
+                    <div class="template-field">
+                        <p>RFQ form</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card" data-group="contact">
                 <div class="template-header">
                     <h3>Find a Rep</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1401,29 +1463,19 @@
                         <span class="template-slug">/contact/find-a-rep/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Sales rep locator by region/territory</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Region selector</li>
-                            <li>Rep contact cards</li>
-                            <li>Map view</li>
-                        </ul>
+                        <p>Sales rep locator</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="contact">
                 <div class="template-header">
                     <h3>Campaign Landing</h3>
-                    <div class="count">Template</div>
+                    <div class="count">TBD</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1431,30 +1483,21 @@
                         <span class="template-slug">/go/[campaign]/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge entry">Entry</span>
                         <span class="status-badge proposed">Proposed</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Flexible template for paid ads, PACK EXPO campaigns, product launches</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Customizable hero</li>
-                            <li>Modular sections</li>
-                            <li>Conversion form</li>
-                            <li>Tracking pixels</li>
-                        </ul>
+                        <p>Ad and event campaigns</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="group-label"><span class="group-dot company"></span> Company</div>
+
+            <div class="template-card" data-group="company">
                 <div class="template-header">
                     <h3>Company Hub</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1462,29 +1505,19 @@
                         <span class="template-slug">/company/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge collection">Collection</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Company hub linking to About, Careers, Partners</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Company overview</li>
-                            <li>Links to subpages</li>
-                            <li>Quick stats/highlights</li>
-                        </ul>
+                        <p>Company section index</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="company">
                 <div class="template-header">
                     <h3>About</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1492,30 +1525,19 @@
                         <span class="template-slug">/company/about/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Company story, history, values, team - the only page about BellatRx</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Company story</li>
-                            <li>Mission/values</li>
-                            <li>Team photos</li>
-                            <li>Certifications</li>
-                        </ul>
+                        <p>Company story and team</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="company">
                 <div class="template-header">
                     <h3>Careers</h3>
-                    <div class="count">1 page</div>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1523,30 +1545,19 @@
                         <span class="template-slug">/company/careers/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Career opportunities and company culture</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Job listings</li>
-                            <li>Culture section</li>
-                            <li>Benefits</li>
-                            <li>Application CTA</li>
-                        </ul>
+                        <p>Job listings</p>
                     </div>
                 </div>
             </div>
 
-            <div class="template-card">
+            <div class="template-card" data-group="company">
                 <div class="template-header">
-                    <h3>Partners / Agents</h3>
-                    <div class="count">1 page</div>
+                    <h3>Partners</h3>
+                    <div class="count">1</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1554,29 +1565,39 @@
                         <span class="template-slug">/company/partners/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Become a BellatRx agent/partner application</p>
+                        <p>Agent application</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="template-card" data-group="company">
+                <div class="template-header">
+                    <h3>Privacy</h3>
+                    <div class="count">1</div>
+                </div>
+                <div class="template-body">
+                    <div class="template-field">
+                        <label>Slug</label>
+                        <span class="template-slug">/company/privacy/</span>
                     </div>
                     <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Partner benefits</li>
-                            <li>Requirements</li>
-                            <li>Application form</li>
-                        </ul>
+                        <span class="type-badge singleton">Singleton</span>
+                        <span class="status-badge current">Current</span>
+                    </div>
+                    <div class="template-field">
+                        <p>Legal policy</p>
                     </div>
                 </div>
             </div>
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Utility Pages</h3>
-                    <div class="count">3 pages</div>
+                    <h3>Utility</h3>
+                    <div class="count">3</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
@@ -1586,83 +1607,32 @@
                         <span class="template-slug">/thank-you/</span>
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="type-badge singleton">Singleton</span>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Search Results, 404 Error, Thank You confirmation pages</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Search results grid</li>
-                            <li>404 helpful links</li>
-                            <li>Thank you next steps</li>
-                        </ul>
+                        <p>Search, error, confirmation</p>
                     </div>
                 </div>
             </div>
 
             <div class="template-card">
                 <div class="template-header">
-                    <h3>Privacy Policy</h3>
-                    <div class="count">1 page</div>
-                </div>
-                <div class="template-body">
-                    <div class="template-field">
-                        <label>Slug</label>
-                        <span class="template-slug">/company/privacy/</span>
-                    </div>
-                    <div class="template-field">
-                        <label>Type &amp; Status</label>
-                        <span class="type-badge singleton">Singleton</span>
-                        <span class="status-badge current">Current</span>
-                    </div>
-                    <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Legal privacy policy and data handling</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Policy text</li>
-                            <li>Last updated date</li>
-                            <li>Contact info</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="template-card">
-                <div class="template-header">
-                    <h3>i18n Structure</h3>
+                    <h3>i18n</h3>
                     <div class="count">3 locales</div>
                 </div>
                 <div class="template-body">
                     <div class="template-field">
-                        <label>Slug Prefixes</label>
-                        <span class="template-slug">/</span> English<br>
-                        <span class="template-slug">/fr/</span> French<br>
-                        <span class="template-slug">/es/</span> Spanish
+                        <label>Prefixes</label>
+                        <span class="template-slug">/</span> EN
+                        <span class="template-slug">/fr/</span> FR
+                        <span class="template-slug">/es/</span> ES
                     </div>
                     <div class="template-field">
-                        <label>Type &amp; Status</label>
                         <span class="status-badge current">Current</span>
                     </div>
                     <div class="template-field">
-                        <label>Purpose</label>
-                        <p>Multi-language support with locale prefixes</p>
-                    </div>
-                    <div class="template-field">
-                        <label>Key Components</label>
-                        <ul>
-                            <li>Language switcher</li>
-                            <li>hreflang tags</li>
-                            <li>Locale routing</li>
-                            <li>Quebec compliance (FR)</li>
-                        </ul>
+                        <p>Locale routing</p>
                     </div>
                 </div>
             </div>
@@ -1922,21 +1892,6 @@
                     </div>
                     <div class="gap-card">
                         <span class="gap-status question">Question</span>
-                        <strong>Front of Line Campaign Hub</strong>
-                        <p>Central campaign page for "Your Front of Line Starts Here" or distributed across all product pages?</p>
-                    </div>
-                    <div class="gap-card">
-                        <span class="gap-status future">Future</span>
-                        <strong>Live Chat</strong>
-                        <p>RFP mentions "Future support for Live Chat options" - placeholder needed in IA?</p>
-                    </div>
-                    <div class="gap-card">
-                        <span class="gap-status future">Future</span>
-                        <strong>Insights / Articles</strong>
-                        <p>RFP mentions blog as future. Suggest <code>/resources/insights/</code> for B2B tone vs generic "blog".</p>
-                    </div>
-                    <div class="gap-card">
-                        <span class="gap-status question">Question</span>
                         <strong>Testimonials vs Case Studies</strong>
                         <p>RFP lists both - same template with different layout, or separate page types?</p>
                     </div>
@@ -2036,6 +1991,635 @@
                     </ul>
                 </li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Competitor Navigation View -->
+    <div id="competitors-view" class="view">
+        <div class="competitors-header">
+            <h2>Competitor Navigation Structures</h2>
+            <div class="competitors-controls">
+                <button class="btn" onclick="document.querySelectorAll('#competitors-view details').forEach(d => d.open = true)">Expand All</button>
+                <button class="btn" onclick="document.querySelectorAll('#competitors-view details').forEach(d => d.open = false)">Collapse All</button>
+            </div>
+        </div>
+        <p class="competitors-intro">Click sections to expand. Tags: <span class="nav-tag industry">Industry</span> <span class="nav-tag product">Product</span> <span class="nav-tag solution">Solution</span> <span class="nav-tag role">Role</span> <span class="nav-tag support">Support</span></p>
+
+        <div class="competitor-grid">
+
+            <!-- Capmatic (Primary) -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Capmatic</h3>
+                    <a href="https://capmatic.com/" target="_blank">capmatic.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Products <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>Filling Machines</li>
+                                <li>Capping Machines</li>
+                                <li>Labeling Systems</li>
+                                <li>Complete Lines</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Solutions</summary>
+                            <ul class="nav-items">
+                                <li>Packaging Solutions</li>
+                                <li>Robotic Solutions</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company</summary>
+                            <ul class="nav-items">
+                                <li>About</li>
+                                <li>Contact</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CVC Technologies (Primary) -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>CVC Technologies</h3>
+                    <a href="https://www.cvcusa.com/" target="_blank">cvcusa.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Products <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>Tablet counting machine (9 models)</li>
+                                <li>Liquid filling machine (6 models)</li>
+                                <li>Powder Filling Machines (6 models)</li>
+                                <li>Labeling Machines (6 models)</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company</summary>
+                            <ul class="nav-items">
+                                <li>About CVC</li>
+                                <li>News & Events</li>
+                                <li>Download</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- All Fill (Primary) -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>All Fill Inc.</h3>
+                    <a href="https://www.all-fill.com/" target="_blank">all-fill.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Equipment <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/equipment/auger-fillers</li>
+                                <li>/equipment/vibratory-fillers</li>
+                                <li>/equipment/volumetric-cup-fillers</li>
+                                <li>/equipment/piston-filling</li>
+                                <li>/equipment/checkweigher-machines</li>
+                                <li>/equipment/labelers</li>
+                                <li>/equipment/unscramblers</li>
+                                <li>/equipment/capping-machines</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Solutions <span class="nav-tag solution">Solution</span></summary>
+                            <ul class="nav-items">
+                                <li>/solutions/solutions-powder</li>
+                                <li>/solutions/food-powders</li>
+                                <li>/solutions/protein-supplements-nutraceuticals</li>
+                                <li>/solutions/spices-seasonings</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company / Support</summary>
+                            <ul class="nav-items">
+                                <li>/company</li>
+                                <li>/support/parts</li>
+                                <li>/support/service</li>
+                                <li>/find-your-machine</li>
+                                <li>/quote</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMA Group -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>IMA Group</h3>
+                    <a href="https://imagroup.com/" target="_blank">imagroup.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Industries <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>/pharma/</li>
+                                <li>/food/</li>
+                                <li>/coffee/</li>
+                                <li>/tea-herbs/</li>
+                                <li>/personal-care/</li>
+                                <li>/tissue-nonwoven/</li>
+                                <li>/e-commerce/</li>
+                                <li>/automation/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Technologies <span class="nav-tag solution">Solution</span></summary>
+                            <ul class="nav-items">
+                                <li>/technologies/</li>
+                                <li>/machines/</li>
+                                <li>/lines/</li>
+                                <li>/pharma/pharmaceutical-technologies/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Services <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>/services/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Corporate</summary>
+                            <ul class="nav-items">
+                                <li>/corporate/</li>
+                                <li>/news/</li>
+                                <li>/contacts/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marchesini Group -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Marchesini Group</h3>
+                    <a href="https://www.marchesini.com/en" target="_blank">marchesini.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Industries <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>/en/industry/aseptic</li>
+                                <li>/en/industry/pharma</li>
+                                <li>/en/industry/beauty</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Machines & Lines <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/en/machines-lines/process</li>
+                                <li>/en/machines-lines/aseptic</li>
+                                <li>/en/machines-lines/primary-packaging</li>
+                                <li>/en/machines-lines/secondary-packaging</li>
+                                <li>/en/machines-lines/laboratory</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Digital</summary>
+                            <ul class="nav-items">
+                                <li>/en/digital/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Customer Care <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>/en/customer-care/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NJM Packaging -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>NJM Packaging</h3>
+                    <a href="https://www.njmpackaging.com/" target="_blank">njmpackaging.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Products <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/products/bottle-unscramblers/</li>
+                                <li>/products/desiccant-dispensers/</li>
+                                <li>/products/tablet-counters/</li>
+                                <li>/products/cappers-retorquers/</li>
+                                <li>/products/labelers/</li>
+                                <li>/products/liquid-filling-closing-systems/</li>
+                                <li>/products/track-trace-systems/</li>
+                                <li>/products/cartoners/</li>
+                                <li>/products/blister-packaging/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Capabilities</summary>
+                            <ul class="nav-items">
+                                <li>
+                                    <details>
+                                        <summary>By Industry <span class="nav-tag industry">Industry</span></summary>
+                                        <ul>
+                                            <li>/industry/pharmaceutical-oral-solid-dose/</li>
+                                            <li>/industry/pharmaceutical-liquid-dose/</li>
+                                            <li>/industry/nutraceutical-vitamins/</li>
+                                            <li>/industry/cosmetics-personal-care/</li>
+                                            <li>/industry/food-beverage/</li>
+                                            <li>/industry/contract-packagers/</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary>By Services <span class="nav-tag solution">Solution</span></summary>
+                                        <ul>
+                                            <li>/njm-services/</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                                <li>
+                                    <details>
+                                        <summary>By Role <span class="nav-tag role">Role</span></summary>
+                                        <ul>
+                                            <li>/by-role/purchasing/</li>
+                                            <li>/by-role/engineering/</li>
+                                            <li>/by-role/maintenance/</li>
+                                        </ul>
+                                    </details>
+                                </li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Parts & Service <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>/parts-and-service/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company</summary>
+                            <ul class="nav-items">
+                                <li>/about/</li>
+                                <li>/videos/</li>
+                                <li>/news/</li>
+                                <li>/contact/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filamatic -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Filamatic</h3>
+                    <a href="https://www.filamatic.com/" target="_blank">filamatic.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Solutions <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/product-category/semi-automatic-filling-machines/</li>
+                                <li>/product-category/inline-filling-systems/</li>
+                                <li>/product-category/monobloc-solutions/</li>
+                                <li>/product-category/closing-capping-systems/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Industries <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>/industries/pharmaceutical/</li>
+                                <li>/industries/cosmetic/</li>
+                                <li>/industries/food-and-beverage/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Support <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>/support/customer-service/</li>
+                                <li>/support/technical-service/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Resources / About</summary>
+                            <ul class="nav-items">
+                                <li>/about-us/history/</li>
+                                <li>/about-us/news/</li>
+                                <li>/careers/</li>
+                                <li>/contact-us/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New England Machinery -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>New England Machinery</h3>
+                    <a href="https://neminc.com/" target="_blank">neminc.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Machines <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/machines/unscramblers/</li>
+                                <li>/machines/cappers/</li>
+                                <li>/machines/retorquer-systems/</li>
+                                <li>/machines/orienters/</li>
+                                <li>/machines/material-handling/</li>
+                                <li>/machines/lidders/</li>
+                                <li>/machines/inspect-reject-systems/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Industries <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>/industries/food/</li>
+                                <li>/industries/beverage/</li>
+                                <li>/industries/pharmaceutical/</li>
+                                <li>/industries/nutraceutical/</li>
+                                <li>/industries/personal-care/</li>
+                                <li>/industries/chemical-industrial/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Support <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>/support/parts-support/</li>
+                                <li>/support/technical-support/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company / Resources</summary>
+                            <ul class="nav-items">
+                                <li>/company/</li>
+                                <li>/news-events/</li>
+                                <li>/videos/</li>
+                                <li>/contact/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DTM Packaging -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>DTM Packaging</h3>
+                    <a href="https://dtmpackaging.com/" target="_blank">dtmpackaging.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Machines <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>/machines/filler/purefil-in-line-fillers/</li>
+                                <li>/machines/new-machinery/capping/</li>
+                                <li>/machines/new-machinery/conveyor-systems/</li>
+                                <li>/machines/new-machinery/labelers/</li>
+                                <li>/machines/custom-automation-machinery/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Industries <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>/industries/pharmaceuticals/</li>
+                                <li>/industries/personal-care/</li>
+                                <li>/industries/food/</li>
+                                <li>/industries/beverage/</li>
+                                <li>/industries/household-products/</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Company / Resources</summary>
+                            <ul class="nav-items">
+                                <li>/about-us/</li>
+                                <li>/company/news/</li>
+                                <li>/videos/</li>
+                                <li>/support/</li>
+                                <li>/contact/</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dara Pharma -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Dara Pharma</h3>
+                    <a href="https://www.dara-pharma.com/en" target="_blank">dara-pharma.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Dara Pharma <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>By Format: Vials, Syringes, Cartridges, Bottles</li>
+                                <li>Complete Lines: Filling, Closing, Inspection</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Dara Beauty <span class="nav-tag industry">Industry</span></summary>
+                            <ul class="nav-items">
+                                <li>Machinery selector</li>
+                                <li>eCatalogue</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Services <span class="nav-tag solution">Solution</span></summary>
+                            <ul class="nav-items">
+                                <li>Tech Center</li>
+                                <li>Global Services</li>
+                                <li>Customer Service</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aesus -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Aesus</h3>
+                    <a href="https://aesus.com/" target="_blank">aesus.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Products <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>Unscramblers & Cleaners</li>
+                                <li>Fillers (Manual, Automatic)</li>
+                                <li>Inserters (Scoop, Desiccant, Ball)</li>
+                                <li>Cappers (Retorquer, Spindle, Chuck)</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Omega Design -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Omega Design</h3>
+                    <a href="https://www.omegadesign.com/" target="_blank">omegadesign.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Packaging Machines <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>1 - Bottle Unscramblers</li>
+                                <li>2 - Desiccant Feeders</li>
+                                <li>3 - Bundlers & Banders</li>
+                                <li>4 - Orienters & Handling</li>
+                                <li>5 - Serialization & End of Line</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Support <span class="nav-tag support">Support</span></summary>
+                            <ul class="nav-items">
+                                <li>Parts</li>
+                                <li>Service</li>
+                                <li>Upgrades</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kaps-All -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>Kaps-All</h3>
+                    <a href="https://kapsall.com/" target="_blank">kapsall.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Solutions <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>Unscramblers</li>
+                                <li>Liquid Fillers</li>
+                                <li>Capping Machines</li>
+                                <li>Labelers</li>
+                                <li>Inspection Systems</li>
+                                <li>Induction Sealer</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Store / Support</summary>
+                            <ul class="nav-items">
+                                <li>Store</li>
+                                <li>Support</li>
+                            </ul>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PackWest -->
+            <div class="competitor-card">
+                <div class="competitor-header">
+                    <h3>PackWest</h3>
+                    <a href="https://www.packwest.com/" target="_blank">packwest.com</a>
+                </div>
+                <div class="competitor-body">
+                    <div class="nav-section">
+                        <details open>
+                            <summary>Products <span class="nav-tag product">Product</span></summary>
+                            <ul class="nav-items">
+                                <li>Inline Spindle Cappers & Retorquers</li>
+                                <li>Cap Sorting Equipment</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Capabilities</summary>
+                            <ul class="nav-items">
+                                <li>Videos</li>
+                                <li>Industries Served</li>
+                            </ul>
+                        </details>
+                    </div>
+                    <div class="nav-section">
+                        <details>
+                            <summary>Parts & Service <span class="nav-tag support">Support</span></summary>
+                        </details>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
