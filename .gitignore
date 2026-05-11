@@ -1,0 +1,9 @@
+# Local Netlify folder
+.netlify
+
+# Large crawl/export files
+*.dbseospider
+sf_crawl/
+
+# Claude config
+.claude/
