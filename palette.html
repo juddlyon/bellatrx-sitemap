@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BellatRx — Tailwind color palette</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=IBM+Plex+Mono:wght@400;500&family=Spline+Sans:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{--ink:#141B4D;--paper:#FAFBFE;--line:#E1E4ED;--mut:#6E76A5}
+  body{font-family:'Spline Sans',sans-serif;color:var(--ink);background:var(--paper);
+    -webkit-font-smoothing:antialiased;line-height:1.5;padding:clamp(24px,5vw,72px)}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{border-bottom:2px solid var(--ink);padding-bottom:28px;margin-bottom:48px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--mut)}
+  h1{font-family:'Newsreader',serif;font-weight:500;font-size:clamp(34px,6vw,56px);
+    line-height:1.05;margin:.2em 0 .35em;letter-spacing:-.01em}
+  .lede{max-width:60ch;color:#414560;font-size:16px}
+  .ramp{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-bottom:40px;
+    align-items:start}
+  .rhead h2{font-family:'Newsreader',serif;font-weight:600;font-size:22px;letter-spacing:-.01em}
+  .rhead code{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--mut);
+    display:inline-block;margin:6px 0 8px}
+  .rhead p{font-size:13px;color:#5E648E;line-height:1.45}
+  .swatches{display:grid;grid-template-columns:repeat(11,1fr);gap:0;border-radius:12px;
+    overflow:hidden;border:1px solid var(--line)}
+  .sw{aspect-ratio:1/1.35;padding:10px 8px;display:flex;flex-direction:column;
+    justify-content:space-between;position:relative}
+  .sw .top{display:flex;justify-content:space-between;align-items:flex-start;gap:4px}
+  .sw .stop{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;
+    opacity:.85;margin-left:auto}
+  .sw .hex{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:-.02em}
+  .pin{font-family:'Spline Sans';font-size:8.5px;font-weight:600;text-transform:uppercase;
+    letter-spacing:.06em;border:1px solid currentColor;border-radius:20px;padding:1px 6px;
+    opacity:.9}
+  @media(max-width:760px){.ramp{grid-template-columns:1fr;gap:12px}
+    .swatches{grid-template-columns:repeat(6,1fr)}.sw .hex{display:none}}
+  .note{background:#FFF;border:1px solid var(--line);border-left:3px solid #822FFB;
+    border-radius:8px;padding:16px 20px;margin:36px 0;font-size:14px;color:#414560}
+  .note b{color:var(--ink)}
+  .code{margin-top:48px}
+  .code h2{font-family:'Newsreader',serif;font-weight:600;font-size:24px;margin-bottom:6px}
+  .code p{font-size:13px;color:var(--mut);margin-bottom:14px}
+  pre{background:#141B4D;color:#E3E9FD;border-radius:12px;padding:24px;overflow:auto;
+    font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.7}
+  pre .c{color:#7888C3}
+  footer{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);
+    font-size:12px;color:var(--mut);font-family:'IBM Plex Mono',monospace}
+</style></head>
+<body><div class="wrap">
+<header>
+  <div class="eyebrow">Design tokens · Tailwind v4</div>
+  <h1>BellatRx color palette</h1>
+  <p class="lede">Full ramps derived from the five decided brand colors. The exact
+  brand values are pinned at their natural stops (marked <em>brand</em>); the rest are
+  perceptually even tints and shades generated in OKLCH to fill each scale.</p>
+</header>
+<section class="ramp">
+      <div class="rhead"><h2>Brand / navy</h2><code>--color-navy-*</code><p>Primary brand, dark surfaces, headings</p></div>
+      <div class="swatches"><div class="sw" style="background:#F1F5FF;color:#141B4D">
+      <div class="top"><span class="stop">50</span></div>
+      <div class="hex">#F1F5FF</div></div><div class="sw" style="background:#E3E9FD;color:#141B4D">
+      <div class="top"><span class="stop">100</span></div>
+      <div class="hex">#E3E9FD</div></div><div class="sw" style="background:#CDD8FC;color:#141B4D">
+      <div class="top"><span class="stop">200</span></div>
+      <div class="hex">#CDD8FC</div></div><div class="sw" style="background:#B0BEEF;color:#141B4D">
+      <div class="top"><span class="stop">300</span></div>
+      <div class="hex">#B0BEEF</div></div><div class="sw" style="background:#8C9DD7;color:#141B4D">
+      <div class="top"><span class="stop">400</span></div>
+      <div class="hex">#8C9DD7</div></div><div class="sw" style="background:#7888C3;color:#141B4D">
+      <div class="top"><span class="stop">500</span></div>
+      <div class="hex">#7888C3</div></div><div class="sw" style="background:#6776AE;color:#FFFFFF">
+      <div class="top"><span class="stop">600</span></div>
+      <div class="hex">#6776AE</div></div><div class="sw" style="background:#576496;color:#FFFFFF">
+      <div class="top"><span class="stop">700</span></div>
+      <div class="hex">#576496</div></div><div class="sw" style="background:#48537C;color:#FFFFFF">
+      <div class="top"><span class="stop">800</span></div>
+      <div class="hex">#48537C</div></div><div class="sw" style="background:#3C4566;color:#FFFFFF">
+      <div class="top"><span class="stop">900</span></div>
+      <div class="hex">#3C4566</div></div><div class="sw" style="background:#141B4D;color:#FFFFFF">
+      <div class="top"><span class="pin">brand</span><span class="stop">950</span></div>
+      <div class="hex">#141B4D</div></div></div></section><section class="ramp">
+      <div class="rhead"><h2>Slate</h2><code>--color-slate-*</code><p>Secondary UI, muted brand elements</p></div>
+      <div class="swatches"><div class="sw" style="background:#F3F5FF;color:#141B4D">
+      <div class="top"><span class="stop">50</span></div>
+      <div class="hex">#F3F5FF</div></div><div class="sw" style="background:#E6E9F9;color:#141B4D">
+      <div class="top"><span class="stop">100</span></div>
+      <div class="hex">#E6E9F9</div></div><div class="sw" style="background:#D2D7F5;color:#141B4D">
+      <div class="top"><span class="stop">200</span></div>
+      <div class="hex">#D2D7F5</div></div><div class="sw" style="background:#B6BDE7;color:#141B4D">
+      <div class="top"><span class="stop">300</span></div>
+      <div class="hex">#B6BDE7</div></div><div class="sw" style="background:#949CCD;color:#141B4D">
+      <div class="top"><span class="stop">400</span></div>
+      <div class="hex">#949CCD</div></div><div class="sw" style="background:#7F87B9;color:#141B4D">
+      <div class="top"><span class="stop">500</span></div>
+      <div class="hex">#7F87B9</div></div><div class="sw" style="background:#6E76A5;color:#FFFFFF">
+      <div class="top"><span class="stop">600</span></div>
+      <div class="hex">#6E76A5</div></div><div class="sw" style="background:#5E648E;color:#FFFFFF">
+      <div class="top"><span class="stop">700</span></div>
+      <div class="hex">#5E648E</div></div><div class="sw" style="background:#4A507E;color:#FFFFFF">
+      <div class="top"><span class="pin">brand</span><span class="stop">800</span></div>
+      <div class="hex">#4A507E</div></div><div class="sw" style="background:#414560;color:#FFFFFF">
+      <div class="top"><span class="stop">900</span></div>
+      <div class="hex">#414560</div></div><div class="sw" style="background:#25283A;color:#FFFFFF">
+      <div class="top"><span class="stop">950</span></div>
+      <div class="hex">#25283A</div></div></div></section><section class="ramp">
+      <div class="rhead"><h2>Accent / purple</h2><code>--color-purple-*</code><p>CTAs, links, highlights</p></div>
+      <div class="swatches"><div class="sw" style="background:#F6F0FF;color:#141B4D">
+      <div class="top"><span class="stop">50</span></div>
+      <div class="hex">#F6F0FF</div></div><div class="sw" style="background:#ECE0FF;color:#141B4D">
+      <div class="top"><span class="stop">100</span></div>
+      <div class="hex">#ECE0FF</div></div><div class="sw" style="background:#DEC5FF;color:#141B4D">
+      <div class="top"><span class="stop">200</span></div>
+      <div class="hex">#DEC5FF</div></div><div class="sw" style="background:#C9A0FF;color:#141B4D">
+      <div class="top"><span class="stop">300</span></div>
+      <div class="hex">#C9A0FF</div></div><div class="sw" style="background:#AD70FF;color:#141B4D">
+      <div class="top"><span class="stop">400</span></div>
+      <div class="hex">#AD70FF</div></div><div class="sw" style="background:#9B53FF;color:#FFFFFF">
+      <div class="top"><span class="stop">500</span></div>
+      <div class="hex">#9B53FF</div></div><div class="sw" style="background:#822FFB;color:#FFFFFF">
+      <div class="top"><span class="pin">brand</span><span class="stop">600</span></div>
+      <div class="hex">#822FFB</div></div><div class="sw" style="background:#7533DF;color:#FFFFFF">
+      <div class="top"><span class="stop">700</span></div>
+      <div class="hex">#7533DF</div></div><div class="sw" style="background:#612EB7;color:#FFFFFF">
+      <div class="top"><span class="stop">800</span></div>
+      <div class="hex">#612EB7</div></div><div class="sw" style="background:#502896;color:#FFFFFF">
+      <div class="top"><span class="stop">900</span></div>
+      <div class="hex">#502896</div></div><div class="sw" style="background:#2F145E;color:#FFFFFF">
+      <div class="top"><span class="stop">950</span></div>
+      <div class="hex">#2F145E</div></div></div></section><section class="ramp">
+      <div class="rhead"><h2>Neutral / gray</h2><code>--color-gray-*</code><p>Text, borders, backgrounds, disabled</p></div>
+      <div class="swatches"><div class="sw" style="background:#F1F2F8;color:#141B4D">
+      <div class="top"><span class="pin">brand</span><span class="stop">50</span></div>
+      <div class="hex">#F1F2F8</div></div><div class="sw" style="background:#E7EAF2;color:#141B4D">
+      <div class="top"><span class="stop">100</span></div>
+      <div class="hex">#E7EAF2</div></div><div class="sw" style="background:#D6D9E1;color:#141B4D">
+      <div class="top"><span class="stop">200</span></div>
+      <div class="hex">#D6D9E1</div></div><div class="sw" style="background:#BDC0C8;color:#141B4D">
+      <div class="top"><span class="stop">300</span></div>
+      <div class="hex">#BDC0C8</div></div><div class="sw" style="background:#9D9FA7;color:#141B4D">
+      <div class="top"><span class="stop">400</span></div>
+      <div class="hex">#9D9FA7</div></div><div class="sw" style="background:#888B93;color:#141B4D">
+      <div class="top"><span class="stop">500</span></div>
+      <div class="hex">#888B93</div></div><div class="sw" style="background:#777981;color:#FFFFFF">
+      <div class="top"><span class="stop">600</span></div>
+      <div class="hex">#777981</div></div><div class="sw" style="background:#65676F;color:#FFFFFF">
+      <div class="top"><span class="stop">700</span></div>
+      <div class="hex">#65676F</div></div><div class="sw" style="background:#53565D;color:#FFFFFF">
+      <div class="top"><span class="stop">800</span></div>
+      <div class="hex">#53565D</div></div><div class="sw" style="background:#45474C;color:#FFFFFF">
+      <div class="top"><span class="stop">900</span></div>
+      <div class="hex">#45474C</div></div><div class="sw" style="background:#28292D;color:#FFFFFF">
+      <div class="top"><span class="stop">950</span></div>
+      <div class="hex">#28292D</div></div></div></section>
+<div class="note">
+  <b>Two things to watch.</b> Purple at its brand value (purple-600, #822FFB) has a
+  5.6:1 contrast on white — passes AA at every size, so purple links and white-on-purple
+  buttons are fine. It falls just short of AAA (7:1) for small text, so if a client needs AAA
+  on body copy, reach for purple-700. Also, the neutral
+  gray ramp is new (the original set had no working neutral); use it for text, borders and
+  disabled states so we're not inventing grays ad hoc.
+</div>
+<div class="code">
+  <h2>Drop-in for <code>@theme</code></h2>
+  <p>Paste into your Tailwind 4 CSS. Generates utilities like bg-navy-950, text-purple-600, border-gray-200.</p>
+  <pre>@theme {
+  --color-navy-50: #F1F5FF;
+  --color-navy-100: #E3E9FD;
+  --color-navy-200: #CDD8FC;
+  --color-navy-300: #B0BEEF;
+  --color-navy-400: #8C9DD7;
+  --color-navy-500: #7888C3;
+  --color-navy-600: #6776AE;
+  --color-navy-700: #576496;
+  --color-navy-800: #48537C;
+  --color-navy-900: #3C4566;
+  --color-navy-950: #141B4D;
+
+  --color-slate-50: #F3F5FF;
+  --color-slate-100: #E6E9F9;
+  --color-slate-200: #D2D7F5;
+  --color-slate-300: #B6BDE7;
+  --color-slate-400: #949CCD;
+  --color-slate-500: #7F87B9;
+  --color-slate-600: #6E76A5;
+  --color-slate-700: #5E648E;
+  --color-slate-800: #4A507E;
+  --color-slate-900: #414560;
+  --color-slate-950: #25283A;
+
+  --color-purple-50: #F6F0FF;
+  --color-purple-100: #ECE0FF;
+  --color-purple-200: #DEC5FF;
+  --color-purple-300: #C9A0FF;
+  --color-purple-400: #AD70FF;
+  --color-purple-500: #9B53FF;
+  --color-purple-600: #822FFB;
+  --color-purple-700: #7533DF;
+  --color-purple-800: #612EB7;
+  --color-purple-900: #502896;
+  --color-purple-950: #2F145E;
+
+  --color-gray-50: #F1F2F8;
+  --color-gray-100: #E7EAF2;
+  --color-gray-200: #D6D9E1;
+  --color-gray-300: #BDC0C8;
+  --color-gray-400: #9D9FA7;
+  --color-gray-500: #888B93;
+  --color-gray-600: #777981;
+  --color-gray-700: #65676F;
+  --color-gray-800: #53565D;
+  --color-gray-900: #45474C;
+  --color-gray-950: #28292D;
+
+  <span class="c">/* white is built in as --color-white */</span>
+}</pre>
+</div>
+<footer>Generated from Mode 1.tokens.json · 11 stops × 4 ramps + white · pins honor exact brand hex</footer>
+</div></body></html>
